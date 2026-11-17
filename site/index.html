@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Practica matemáticas de cuarto de primaria con ejercicios y explicaciones.">
+  <title>Mi aventura matemática</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./questions.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="./"><span aria-hidden="true">✳</span> Mi aventura matemática</a><a class="download" href="./taller-matematicas.pdf" download>↓ Descargar taller PDF</a></header>
+  <main>
+    <section class="hero">
+      <div><p class="eyebrow">CUARTO DE PRIMARIA · REPASO FINAL</p><h1>¡Las matemáticas son una <em>aventura!</em></h1><p>Practica a tu ritmo, descubre pistas y aprende de cada intento. ¡Tú puedes!</p><a class="primary" href="#practica">Empezar a practicar <span aria-hidden="true">→</span></a></div>
+      <div class="hero-art" aria-hidden="true"><span class="orbit one">×</span><span class="orbit two">÷</span><span class="orbit three">½</span><div class="sun">★</div><span class="hero-label">¡Cada intento cuenta!</span></div>
+    </section>
+    <section class="practice" id="practica">
+      <div class="section-heading"><div><p class="eyebrow">ELIGE TU MISIÓN</p><h2>¿Qué quieres practicar?</h2><p>Selecciona un tema o recorre todas las preguntas.</p></div><div class="progress-summary"><strong id="progress-count">0 / 0</strong><span>preguntas resueltas</span></div></div>
+      <div class="progress-track" role="progressbar" aria-label="Preguntas resueltas" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progress-bar"></div></div>
+      <nav id="topics" class="topics" aria-label="Temas de práctica"></nav>
+      <div class="exercise" id="exercise">
+        <div class="exercise-top"><span id="category" class="pill"></span><span id="position"></span></div>
+        <h3 id="question"></h3><div id="visual"></div><p class="instruction">Elige una respuesta:</p>
+        <div id="options" class="options"></div>
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+        <div class="exercise-footer"><button id="previous" class="secondary" type="button">← Anterior</button><button id="next" class="primary" type="button">Siguiente →</button></div>
+      </div>
+      <div class="bottom-note"><p>💡 Equivocarse también es parte de aprender. Puedes intentarlo de nuevo.</p><button id="reset" class="text-button" type="button">Reiniciar progreso</button></div>
+      <noscript>Activa JavaScript para practicar. También puedes descargar el taller PDF.</noscript>
+    </section>
+    <section class="print-card"><div><p class="eyebrow">PARA PRACTICAR EN PAPEL</p><h2>Una aventura que puedes imprimir</h2><p>El taller incluye los ejercicios y una sección de respuestas para revisar en familia.</p></div><a class="primary" href="./taller-matematicas.pdf" download>↓ Descargar taller PDF</a></section>
+  </main>
+  <footer>Hecho para aprender con curiosidad y confianza ✨</footer>
+</body>
+</html>
