@@ -31,7 +31,7 @@ const context = {
 vm.createContext(context);
 vm.runInContext(fs.readFileSync('site/questions.js', 'utf8'), context);
 const questions = context.window.QUESTIONS;
-assert.equal(questions.length, 42);
+assert.equal(questions.length, 56);
 assert.equal(new Set(questions.map(q => q.id)).size, questions.length);
 questions.forEach(q => {
   assert.equal(q.options.length, 4, `Opciones de la pregunta ${q.id}`);
@@ -40,19 +40,25 @@ questions.forEach(q => {
   assert.ok(q.question && q.explanation && q.topic);
 });
 vm.runInContext(fs.readFileSync('site/app.js', 'utf8'), context);
-assert.equal(elements['progress-count'].textContent, '0 / 42');
+assert.equal(elements['progress-count'].textContent, '0 / 56');
 elements.options.children[1].click();
 assert.match(elements.feedback.textContent, /vuelve a intentarlo/);
-assert.equal(elements['progress-count'].textContent, '0 / 42');
+assert.equal(elements['progress-count'].textContent, '0 / 56');
 elements.options.children[0].click();
 assert.match(elements.feedback.textContent, /Muy bien/);
-assert.equal(elements['progress-count'].textContent, '1 / 42');
+assert.equal(elements['progress-count'].textContent, '1 / 56');
 assert.equal(JSON.parse(store['aventura-matematica-progreso-v1'])['1'], true);
 elements.next.click();
 assert.match(elements.question.textContent, /8.002/);
 elements.topics.children.find(button => button.textContent === 'Fracciones').click();
 assert.match(elements.question.textContent, /equivalente/);
 assert.equal(elements.position.textContent, 'Pregunta 1 de 9');
+elements.topics.children.find(button => button.textContent === 'Ángulos y movimientos').click();
+assert.match(elements.question.textContent, /45°/);
+assert.equal(elements.visual.children.length, 1);
+elements.topics.children.find(button => button.textContent === 'Medidas y potencias').click();
+assert.match(elements.question.textContent, /3 kilómetros/);
+assert.match(elements.visual.children[0].textContent, /km.*mm/);
 elements.reset.click();
-assert.equal(elements['progress-count'].textContent, '0 / 42');
+assert.equal(elements['progress-count'].textContent, '0 / 56');
 console.log('Pruebas del sitio y de las preguntas correctas.');

@@ -71,6 +71,25 @@
       chart.setAttribute('aria-label', 'Barra que llega a cinco votos');
       chart.innerHTML = '<span>5 votos</span><div></div><small>Votos</small>';
       visual.append(chart);
+    } else if (q.id >= 43 && q.id <= 45) {
+      const endpoints = { 43: '151 49', 44: '95 25', 45: '39 49' };
+      const degrees = { 43: 45, 44: 90, 45: 135 };
+      const diagram = document.createElement('div');
+      diagram.innerHTML = `<svg viewBox="0 0 200 120" width="200" height="120" role="img" aria-label="Ángulo de ${degrees[q.id]} grados"><path d="M 175 105 L 95 105 L ${endpoints[q.id]}" fill="none" stroke="#7452de" stroke-width="4" stroke-linecap="round"/><circle cx="95" cy="105" r="4" fill="#20345a"/></svg>`;
+      visual.append(diagram);
+    } else if (q.id === 46 || q.id === 47) {
+      const diagram = document.createElement('div');
+      if (q.id === 46) {
+        diagram.innerHTML = '<svg viewBox="0 0 260 100" width="260" height="100" role="img" aria-label="Un triángulo se desliza hacia la derecha sin girar"><path d="M 20 80 L 55 20 L 85 80 Z" fill="#cfc3fa" stroke="#7452de" stroke-width="3"/><path d="M 100 50 H 150 M 140 42 L 150 50 L 140 58" fill="none" stroke="#64718a" stroke-width="3"/><path d="M 170 80 L 205 20 L 235 80 Z" fill="#bceee1" stroke="#34866e" stroke-width="3"/></svg>';
+      } else {
+        diagram.innerHTML = '<svg viewBox="0 0 230 180" width="230" height="180" role="img" aria-label="Una figura gira un cuarto de vuelta en torno al punto marcado"><path d="M 70 85 h60 v-15 h-45 v-45 h-15 Z" fill="#cfc3fa" stroke="#7452de" stroke-width="3"/><path d="M 70 85 h60 v-15 h-45 v-45 h-15 Z" transform="rotate(90 70 85)" fill="#bceee1" stroke="#34866e" stroke-width="3"/><circle cx="70" cy="85" r="5" fill="#20345a"/></svg>';
+      }
+      visual.append(diagram);
+    } else if (q.id >= 48 && q.id <= 52) {
+      const hint = document.createElement('p');
+      hint.textContent = q.id <= 50 ? 'Tabla de longitud: km → hm → dam → m → dm → cm → mm' : q.id === 51 ? 'Tabla de masa: kg → hg → dag → g → dg → cg → mg' : 'Tabla de capacidad: kL → hL → daL → L → dL → cL → mL';
+      hint.style.color = '#6242ce';
+      visual.append(hint);
     }
     $('options').replaceChildren();
     q.options.forEach((option, i) => {

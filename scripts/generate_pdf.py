@@ -61,13 +61,16 @@ for start in range(0, len(questions), 4):
         raise ValueError(f'No hay espacio suficiente en la página de la pregunta {start + 1}')
     pages.append(page)
 
+extra_start = max(q['id'] for q in questions) + 1
 extras = [
-    ('43. Representa 3/4: dibuja una figura dividida en 4 partes iguales y colorea 3.',
-     '44. Dibuja una circunferencia y señala el centro, un radio, un diámetro y un arco.'),
-    ('45. Dibuja un prisma y una pirámide. Señala una base, una cara, una arista y un vértice en cada uno.',
-     '46. Votos: rojo, azul, rojo, verde, azul, rojo. Construye una tabla de frecuencias y escribe la moda.'),
-    ('47. Con los datos del ejercicio 46, dibuja un diagrama de barras. Usa 1 unidad de altura por voto.',
-     '48. Con los datos del ejercicio 46, crea un pictograma. Usa una estrella por voto e incluye la clave.')
+    (f'{extra_start}. Representa 3/4: dibuja una figura dividida en 4 partes iguales y colorea 3.',
+     f'{extra_start + 1}. Dibuja una circunferencia y señala el centro, un radio, un diámetro y un arco.'),
+    (f'{extra_start + 2}. Dibuja un prisma y una pirámide. Señala una base, una cara, una arista y un vértice en cada uno.',
+     f'{extra_start + 3}. Votos: rojo, azul, rojo, verde, azul, rojo. Construye una tabla de frecuencias y escribe la moda.'),
+    (f'{extra_start + 4}. Con los datos del ejercicio {extra_start + 3}, dibuja un diagrama de barras. Usa 1 unidad de altura por voto.',
+     f'{extra_start + 5}. Con los datos del ejercicio {extra_start + 3}, crea un pictograma. Usa una estrella por voto e incluye la clave.'),
+    (f'{extra_start + 6}. Dibuja y nombra un ángulo agudo, uno recto y uno obtuso. Indica una medida posible para cada uno.',
+     f'{extra_start + 7}. Dibuja una figura y luego muéstrala trasladada y rotada. Marca el punto alrededor del cual la giras.')
 ]
 for pair in extras:
     page = Page('Ahora dibuja y construye', 'Usa regla y colores si los necesitas. Explica tus ideas con dibujos.')
@@ -91,12 +94,14 @@ pages.append(page)
 
 page = Page('Respuestas de los dibujos', 'Hay distintas maneras correctas de dibujar cada figura.')
 answers = [
-    '43. Una figura con 4 partes iguales, de las cuales 3 están coloreadas.',
-    '44. El centro es el punto interior equidistante de la circunferencia. El radio une centro y circunferencia; el diámetro pasa por el centro y une dos puntos de la circunferencia; el arco es una parte de ella.',
-    '45. En cada dibujo, una cara es una superficie; una arista une dos caras y un vértice es un punto donde se unen aristas. El prisma tiene dos bases iguales y paralelas; la pirámide tiene una base y caras laterales triangulares.',
-    '46. Frecuencias: rojo 3, azul 2 y verde 1. La moda es rojo.',
-    '47. Las barras para rojo, azul y verde deben tener alturas 3, 2 y 1, respectivamente.',
-    '48. Clave: una estrella representa un voto. Rojo: 3 estrellas; azul: 2; verde: 1.'
+    f'{extra_start}. Una figura con 4 partes iguales, de las cuales 3 están coloreadas.',
+    f'{extra_start + 1}. El centro es el punto interior equidistante de la circunferencia. El radio une centro y circunferencia; el diámetro pasa por el centro y une dos puntos de la circunferencia; el arco es una parte de ella.',
+    f'{extra_start + 2}. En cada dibujo, una cara es una superficie; una arista une dos caras y un vértice es un punto donde se unen aristas. El prisma tiene dos bases iguales y paralelas; la pirámide tiene una base y caras laterales triangulares.',
+    f'{extra_start + 3}. Frecuencias: rojo 3, azul 2 y verde 1. La moda es rojo.',
+    f'{extra_start + 4}. Las barras para rojo, azul y verde deben tener alturas 3, 2 y 1, respectivamente.',
+    f'{extra_start + 5}. Clave: una estrella representa un voto. Rojo: 3 estrellas; azul: 2; verde: 1.',
+    f'{extra_start + 6}. Por ejemplo: 45° es agudo, 90° es recto y 135° es obtuso.',
+    f'{extra_start + 7}. La figura trasladada se desliza sin girar; la rotada gira alrededor de un punto fijo. En ambos casos conserva forma y tamaño.'
 ]
 y = 710
 for answer in answers:
@@ -129,4 +134,4 @@ for offset in offsets[1:]:
 pdf.extend(f'trailer\n<< /Size {len(objects) + 1} /Root 1 0 R >>\nstartxref\n{xref}\n%%EOF\n'.encode())
 output = ROOT / 'site/taller-matematicas.pdf'
 output.write_bytes(pdf)
-print(f'Creado {output.relative_to(ROOT)}: {len(questions)} preguntas, 6 actividades de dibujo y {len(pages)} páginas.')
+print(f'Creado {output.relative_to(ROOT)}: {len(questions)} preguntas, {len(extras) * 2} actividades de dibujo y {len(pages)} páginas.')

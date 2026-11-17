@@ -1,8 +1,8 @@
 # Mi aventura matemática
 
-Sitio de repaso de matemáticas para cuarto de primaria, con 42 preguntas interactivas y un taller imprimible que añade seis actividades para dibujar y construir gráficos. El PDF incluye respuestas al final.
+Sitio de repaso de matemáticas para cuarto de primaria, con 56 preguntas interactivas y un taller imprimible que añade ocho actividades para dibujar y construir gráficos. El PDF incluye respuestas al final.
 
-El repaso cubre operaciones, propiedades de la multiplicación, múltiplos y factores, conjuntos, fracciones, geometría y estadística. Aquí se interpretan las fracciones «regulares e irregulares» como propias e impropias.
+El repaso cubre operaciones, propiedades de la multiplicación, múltiplos y factores, conjuntos, fracciones, geometría, estadística, ángulos, traslación y rotación, conversiones métricas de longitud, masa y capacidad, y potencias al cuadrado y al cubo. Aquí se interpretan las fracciones «regulares e irregulares» como propias e impropias.
 
 ## Ver el sitio localmente
 
@@ -20,7 +20,13 @@ python3 scripts/generate_pdf.py
 
 Las actividades de dibujo y sus respuestas están en `scripts/generate_pdf.py`. Incluye el PDF regenerado al subir los cambios.
 
-Para comprobar la estructura de las preguntas y los principales controles del sitio, ejecuta `node scripts/test_site.js`.
+Para comprobar la estructura de las preguntas y los principales controles del sitio, ejecuta `node scripts/test_site.js`. La comprobación de actualizaciones se puede probar con `node scripts/test_refresh.js`.
+
+## Actualización automática de versiones
+
+El sitio comprueba periódicamente si hay una versión publicada más reciente y, si la hay, vuelve a cargar la página sin borrar el progreso guardado. Las direcciones del CSS, JavaScript y PDF incluyen una versión para evitar que el navegador reutilice archivos antiguos. La comprobación necesita conexión y funciona cuando el sitio está servido por HTTP o HTTPS.
+
+GitHub Actions ejecuta `python3 scripts/update_version.py` antes de publicar para actualizar la versión automáticamente. Para probarlo localmente tras modificar archivos, ejecuta ese comando después de generar el PDF. La primera visita desde una versión anterior a esta función puede requerir una recarga manual.
 
 ## Publicar en GitHub Pages
 
